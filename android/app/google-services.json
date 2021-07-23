@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "620704111555",
+    "project_id": "foodibon-ec0da",
+    "storage_bucket": "foodibon-ec0da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620704111555:android:f6d994e35fb775de397b76",
+        "android_client_info": {
+          "package_name": "com.foodibon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620704111555-fe0jliej48pf8tqro397q4rvmml7escd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbWAEqKPb0HsoO0tZZAH0H1wkUw9cOB-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620704111555-fe0jliej48pf8tqro397q4rvmml7escd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
