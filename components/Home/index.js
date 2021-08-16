@@ -86,7 +86,7 @@ const index = ({navigation}) => {
     const headerHome = () => (
         <Fragment>
            <View style={styles.bodyTiltes}>
-                <Text style={styles.title}>Bonjour User</Text>
+                <Text style={styles.title}>Bonjour Jérémy</Text>
                 <Text style={styles.subTitle}>Une petite Faim?</Text>
             </View>
 
@@ -98,7 +98,7 @@ const index = ({navigation}) => {
                 {displayFilterCat}
                 </View>
 
-                <Text style={styles.titleCategory}>Nos petit plats</Text>
+                <Text style={styles.titleCategory}>Nos petits plats</Text>
             </View> 
 
         </Fragment>

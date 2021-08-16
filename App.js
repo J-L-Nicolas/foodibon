@@ -1,5 +1,6 @@
 import React, {useEffect, Fragment} from 'react'
 import styles from './assets/stylesApp'
+import { Alert } from 'react-native';
 
 /* import navigation */
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,6 +18,7 @@ import Home from './components/Home'
 import Account from './components/Account'
 import Detail from './components/Detail'
 import Card from './components/Card'
+import Notif from './components/notif'
 
 const App = () => {
 
@@ -30,6 +32,14 @@ const App = () => {
 
     Firebase.auth().onAuthStateChanged(onAuthStateChanged)
   }, [])
+
+  useEffect(() => {
+    const unsubscribe = Firebase.messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
 
   // Handle user state changes
   const onAuthStateChanged = (user) => {
@@ -49,6 +59,7 @@ const App = () => {
       <Stack.Screen name="account" component={Account} />
       <Stack.Screen name="detail" component={Detail} />
       <Stack.Screen name="card" component={Card} />
+      <Stack.Screen name="notif" component={Notif} />
     </Fragment>
   ):(
     <Fragment>

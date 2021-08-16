@@ -42,6 +42,12 @@ const index = ({navigation, backAction}) => {
         navigation.navigate("card")
     }
 
+    const gotoNotif = () => {
+        setmodalEtat(false)
+        navigation.navigate("notif")
+    }
+    
+
     /* displayCard */
     const viewBack = backAction ? (<View></View>): (<Icon name="arrow-left" size={30} color={colors.textLink} onPress={GoBack}/>)
     
@@ -85,6 +91,11 @@ const index = ({navigation, backAction}) => {
                         <Pressable style={styles.modalBtn } onPress={gotoAccount}>
                             <Text style={styles.modalBtnText}>My Order</Text>
                             <Icon name="cube" size={30} color="#000000" />
+                        </Pressable>
+
+                        <Pressable style={styles.modalBtn } onPress={gotoNotif}>
+                            <Text style={styles.modalBtnText}>Send Notif</Text>
+                            <Icon name="send-o" size={30} color="#000000" />
                         </Pressable>
 
                         <Pressable style={styles.modalBtn} onPress={logOut}>
