@@ -16,6 +16,9 @@ const type = {
     /* action User */
     USER_CHANGE: "USER_CHANGE",
 
+    /* action Products */
+    PRODUCTS_UPDATE_LIST: "PRODUCTS_UPDATE_LIST",
+
     /* action SelProduct */
     SELPRODUCT_UPDATE: "SELPRODUCT_UPDATE",
 

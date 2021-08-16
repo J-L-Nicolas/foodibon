@@ -13,7 +13,7 @@ const Products = (state = initState, action) => {
 
     switch (action.type){
 
-        case "SELPRODUCT_UPDATE":
+        case "PRODUCTS_UPDATE_LIST":
             return action.payload
 
         default:

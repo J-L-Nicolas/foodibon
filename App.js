@@ -46,7 +46,7 @@ const App = () => {
 
         tempData = [...tempData, {...product.data(), id: product.id}]
       });
-      dispatch(Action(type.SELPRODUCT_UPDATE,tempData))
+      dispatch(Action(type.PRODUCTS_UPDATE_LIST,tempData))
     });
 
     return unsubscribe;
