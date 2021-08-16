@@ -38,6 +38,17 @@ const App = () => {
       Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
 
+    /* add products firstore in redux */
+    Firebase.readListProducts().onSnapshot(productSnapshot => {
+
+      let tempData = []
+      productSnapshot.forEach(product => {
+
+        tempData = [...tempData, {...product.data(), id: product.id}]
+      });
+      dispatch(Action(type.SELPRODUCT_UPDATE,tempData))
+    });
+
     return unsubscribe;
   }, []);
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, Text, Image, Pressable , TouchableOpacity} from 'react-native'
+import { View, Text, Image , TouchableOpacity} from 'react-native'
 import styles from './styles'
 import colors from '../../assets/colors'
 
@@ -36,7 +36,6 @@ const index = ({navigation}) => {
         }
     }
     
-
     /* function add cart product */
     const addCard = () => {
         dispatch(Action(type.CARD_ADD_PRODUCT,{...SelProduct, quantity: numberItems}))
@@ -45,8 +44,6 @@ const index = ({navigation}) => {
     /* display icon */
     const add = <Icon name="plus" size={20} color={colors.textLink} />;
     const remove = <Icon name="minus" size={20} color={colors.textLink} />;
-
-    /* display icon */
     const cartIcon = <Icon name="cart-arrow-down" size={30} color="#ffffff" />;
 
     return (

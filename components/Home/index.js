@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import { View, Text, FlatList, Pressable, TouchableOpacity } from 'react-native'
 import styles from './styles'
 

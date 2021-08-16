@@ -18,7 +18,8 @@ const initState = {
 
     /* firestore */
     firestore: () => firestore(),
-    addMessage: (msg,token) => firestore().collection('message').add({msg: msg, token})
+    addMessage: (msg,token) => firestore().collection('message').add({msg: msg, token}),
+    readListProducts: () => firestore().collection('products')
 
 }
 
