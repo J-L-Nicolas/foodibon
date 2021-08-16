@@ -46,8 +46,6 @@ const index = ({navigation}) => {
             <Cat name={item.name} img={item.url} />
         </TouchableOpacity>
     )
-     
-
 
     /* displayer filter */
     const displayFilterCat = (Filter != null) ? (
