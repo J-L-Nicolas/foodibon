@@ -36,6 +36,9 @@ const type = {
     /* action Filter */
     FILTER_UPDATE: "FILTER_UPDATE",
     FILTER_CLEAN: "FILTER_CLEAN",
+
+    /* action public user */
+    PUBLICUSER_UPDATE: "PUBLICUSER_UPDATE",
     
 }
 

@@ -82,12 +82,19 @@ const App = () => {
       dataCard = Firebase.readListCard().where('user', '==', User.uid ).onSnapshot(cardSnapshot => {
 
         let tempData = []
-        cardSnapshot.forEach(card => {
+        cardSnapshot.forEach(card => { 
 
           tempData = [...tempData, {...card.data(), id: card.id}]
         });
         dispatch(Action(type.CARD_UPDATE_ALL,tempData))
       });
+
+      /* add user infos firstore in redux */
+      publicUser = Firebase.queryUser().doc(User.uid).onSnapshot(pUserSnapshot => {
+
+        dispatch(Action(type.PUBLICUSER_UPDATE,pUserSnapshot.data()))
+      });
+
     }
 
     return () => {

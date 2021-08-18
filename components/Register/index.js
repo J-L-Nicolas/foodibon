@@ -26,12 +26,20 @@ const index = ({navigation}) => {
     /* Functions submit */
     const submit = () => {
         
-        if(passWord != "" && email != ""){
+        if(pseudo != "" && passWord != "" && email != "" && confPassWord == passWord){
             
             setWaintView(true)
             Firebase.register(email, passWord).then(result => {
 
                 // navigation.navigate("home")
+
+                Firebase.queryUser().doc(result.user.uid).set(
+                   
+                    {   
+                        name: pseudo,
+                        url: "https://www.francetvinfo.fr/pictures/RXMvwN335gV1l3-S4ZwA-RBbAeE/752x423/2021/06/01/phpYKxkS7.jpg"
+                    }
+                )
 
             }).catch(error => {
                 setWaintView(false)

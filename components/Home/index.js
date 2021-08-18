@@ -19,6 +19,7 @@ const index = ({navigation}) => {
     const Categories = useSelector(state => state.Categories)
     const Products = useSelector(state => state.Products)
     const Filter = useSelector(state => state.Filter)
+    const PublicUser = useSelector(state => state.PublicUser)
     const dispatch = useDispatch()
 
     /* function add filter */
@@ -84,7 +85,7 @@ const index = ({navigation}) => {
     const headerHome = () => (
         <Fragment>
            <View style={styles.bodyTiltes}>
-                <Text style={styles.title}>Bonjour Jérémy</Text>
+                <Text style={styles.title}>Bonjour {(PublicUser)&&PublicUser.name}</Text>
                 <Text style={styles.subTitle}>Une petite Faim?</Text>
             </View>
 
