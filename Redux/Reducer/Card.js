@@ -25,7 +25,8 @@ const Card = (state = initState, action) => {
             
         case "CARD_REMOVE_PRODUCT":
 
-            return state.filter(value => value.idProduct != action.payload)
+            fireCard.doc(action.payload).delete()
+            return state
 
         case "CARD_INCREMENT_QUANTITY_PRODUCT":
 
@@ -71,7 +72,20 @@ const Card = (state = initState, action) => {
 
         case "CARD_ALL_REMOVE_PRODUCTS":
 
-            return initState
+            let batch = firestore().batch();
+
+            const jobskill_ref = fireCard.where('user', '==', action.payload);
+
+            jobskill_ref
+            .get()
+            .then(snapshot => {
+                snapshot.docs.forEach(doc => {
+                batch.delete(doc.ref);
+                });
+                return batch.commit();
+            })
+
+            return state
 
         default:
             return state

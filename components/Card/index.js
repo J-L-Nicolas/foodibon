@@ -17,6 +17,7 @@ const Card = ({navigation}) => {
     /* init redux */
     const Cards = useSelector(state => state.Card)
     const Products = useSelector(state => state.Products)
+    const authUser = useSelector(state => state.User)
     const dispatch = useDispatch()
 
     /* State */
@@ -61,7 +62,7 @@ const Card = ({navigation}) => {
                             <Text>{itemProduct.name}</Text>
                             <Text>{itemProduct.price}€</Text>
                         </View>
-                        <Icon name="trash" size={25} color="#900" onPress={()=>deleteItem(item.idProduct)}/>
+                        <Icon name="trash" size={25} color="#900" onPress={()=>deleteItem(item.id)}/>
                     </View>
                     <View  style={styles.ender2}>
                         <Icon name="plus" size={25} color={colors.textLink} onPress={()=>{increProductQt(item.idProduct)}}/>
@@ -75,7 +76,7 @@ const Card = ({navigation}) => {
 
     /* function clean card */
     const cleanCard = () => {
-        dispatch(Action(type.CARD_ALL_REMOVE_PRODUCTS,true))
+        dispatch(Action(type.CARD_ALL_REMOVE_PRODUCTS,authUser.uid))
     }
     
     /* display button clean */
@@ -93,11 +94,11 @@ const Card = ({navigation}) => {
             <Text style={styles.textPay}>Payments Method</Text>
 
             <View style={styles.bodyPay}>
-                <Icon name="cc-paypal" size={25} color="#000" onPress={()=>deleteItem(item.idProduct)}/>
+                <Icon name="cc-paypal" size={25} color="#000" />
                 <Text>Paypal</Text>
             </View>
             <View style={styles.bodyPay}>
-                <Icon name="cc-stripe" size={25} color="#000" onPress={()=>deleteItem(item.idProduct)}/>
+                <Icon name="cc-stripe" size={25} color="#000" />
                 <Text>Strip</Text>
             </View>
         </Fragment>
