@@ -35,6 +35,7 @@ const Card = (state = initState, action) => {
 
                     if(value.quantity < 10){
 
+                        fireCard.doc(value.id).update({ quantity: value.quantity + 1 })
                         return {...value, quantity: value.quantity + 1 }
                     }else{
 
@@ -46,7 +47,7 @@ const Card = (state = initState, action) => {
                     return value
                 }
             })
-            return moveState
+            return state
 
         case "CARD_DECREMENT_QUANTITY_PRODUCT":
             const newState =  state.map(value => {
@@ -55,6 +56,7 @@ const Card = (state = initState, action) => {
 
                     if(value.quantity > 1){
 
+                        fireCard.doc(value.id).update({ quantity: value.quantity - 1 })
                         return {...value, quantity: value.quantity - 1 }
                     }else{
 
@@ -65,7 +67,7 @@ const Card = (state = initState, action) => {
                     return value
                 }
             })
-            return newState
+            return state
 
         case "CARD_ALL_REMOVE_PRODUCTS":
 

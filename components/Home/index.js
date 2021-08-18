@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect} from 'react'
-import { View, Text, FlatList, Pressable, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, Pressable, TouchableOpacity,  ActivityIndicator} from 'react-native'
 import styles from './styles'
 
 /* import redux */
@@ -48,7 +48,7 @@ const index = ({navigation}) => {
     )
 
     /* displayer filter */
-    const displayFilterCat = (Filter != null) ? (
+    const displayFilterCat = ( Filter != null) ? (
 
         <TouchableOpacity style={styles.bodyCat} onPress={delFilter}>
             <Cat name={Filter.name} img={Filter.url} />
@@ -73,7 +73,6 @@ const index = ({navigation}) => {
     const renderItemProduct = ({ item }) => {
 
         const nameCat = Categories.filter(value => item.cat == value.id)
-        
         return(
             <Pressable style={styles.bodyPro} onPress={()=>goDetail(item)} >
                 <Product properties={item} nameCat={nameCat[0].name}/>
@@ -103,6 +102,18 @@ const index = ({navigation}) => {
         </Fragment>
     
     )
+
+    const loadViewAll = (Categories.length > 0 && Products.length > 0 )?(
+        <FlatList
+            ListHeaderComponent={headerHome}
+            data={myProducts}
+            renderItem={renderItemProduct}
+            keyExtractor={item => item.id}
+            numColumns={2}
+        />
+    ):(
+        <ActivityIndicator size="large" />
+    )
         
     return (
         <View style={styles.body}>
@@ -110,13 +121,7 @@ const index = ({navigation}) => {
         <Header navigation={navigation} backEvent={false} backAction={true}/>
 
             <View style={styles.bodyFlatlistProduct}>
-                <FlatList
-                    ListHeaderComponent={headerHome}
-                    data={myProducts}
-                    renderItem={renderItemProduct}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                />
+                {loadViewAll}
             </View>
             
         </View>
