@@ -14,13 +14,13 @@ const Card = (state = initState, action) => {
             
         case "CARD_REMOVE_PRODUCT":
 
-            return state.filter(value => value.id != action.payload)
+            return state.filter(value => value.idProduct != action.payload)
 
         case "CARD_INCREMENT_QUANTITY_PRODUCT":
 
             const moveState =  state.map(value => {
 
-                if (value.id == action.payload){
+                if (value.idProduct == action.payload){
 
                     if(value.quantity < 10){
 
@@ -40,7 +40,7 @@ const Card = (state = initState, action) => {
         case "CARD_DECREMENT_QUANTITY_PRODUCT":
             const newState =  state.map(value => {
 
-                if (value.id == action.payload){
+                if (value.idProduct == action.payload){
 
                     if(value.quantity > 1){
 

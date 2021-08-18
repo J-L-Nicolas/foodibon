@@ -16,6 +16,7 @@ const index = ({navigation}) => {
 
     /* init redux const */
     const SelProduct = useSelector(state => state.SelProduct)
+    const authUser = useSelector(state => state.User)
     const dispatch = useDispatch()
 
     /* State */
@@ -38,7 +39,7 @@ const index = ({navigation}) => {
     
     /* function add cart product */
     const addCard = () => {
-        dispatch(Action(type.CARD_ADD_PRODUCT,{...SelProduct, quantity: numberItems}))
+        dispatch(Action(type.CARD_ADD_PRODUCT,{idProduct: SelProduct.id, quantity: numberItems, user: authUser.uid}))
     }
     
     /* display icon */
