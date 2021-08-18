@@ -72,6 +72,29 @@ const App = () => {
     }
   }
 
+  useEffect(() => {
+
+    let dataCard = null
+
+    if (User != null) {
+
+      /* add list Card firstore in redux */
+      dataCard = Firebase.readListCard().where('user', '==', User.uid ).onSnapshot(cardSnapshot => {
+
+        let tempData = []
+        cardSnapshot.forEach(card => {
+
+          tempData = [...tempData, {...card.data(), id: card.id}]
+        });
+        dispatch(Action(type.CARD_UPDATE_ALL,tempData))
+      });
+    }
+
+    return () => {
+      dataCard
+    }
+  }, [User])
+
   const Stack = createStackNavigator();
 
   /* display components Navigate  */

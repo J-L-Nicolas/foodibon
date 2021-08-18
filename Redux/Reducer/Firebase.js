@@ -24,6 +24,8 @@ const initState = {
     readListProducts: () => firestore().collection('products'),
                     /* --------------------------querry categories */
     readListCategories: () => firestore().collection('categories'),
+                    /* --------------------------querry cardList */
+    readListCard: () => firestore().collection('card'),
 
 }
 
