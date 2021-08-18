@@ -49,6 +49,17 @@ const App = () => {
       dispatch(Action(type.PRODUCTS_UPDATE_LIST,tempData))
     });
 
+    /* add categories firstore in redux */
+    Firebase.readListCategories().onSnapshot(catSnapshot => {
+
+      let tempData = []
+      catSnapshot.forEach(cat => {
+
+        tempData = [...tempData, {...cat.data(), id: cat.id}]
+      });
+      dispatch(Action(type.CATEGORIES_UPDATE_LIST,tempData))
+    });
+
     return unsubscribe;
   }, []);
 

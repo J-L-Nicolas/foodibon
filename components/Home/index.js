@@ -73,6 +73,7 @@ const index = ({navigation}) => {
     const renderItemProduct = ({ item }) => {
 
         const nameCat = Categories.filter(value => item.cat == value.id)
+        
         return(
             <Pressable style={styles.bodyPro} onPress={()=>goDetail(item)} >
                 <Product properties={item} nameCat={nameCat[0].name}/>

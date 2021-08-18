@@ -19,6 +19,9 @@ const type = {
     /* action Products */
     PRODUCTS_UPDATE_LIST: "PRODUCTS_UPDATE_LIST",
 
+    /* action categories */
+    CATEGORIES_UPDATE_LIST: "CATEGORIES_UPDATE_LIST",
+
     /* action SelProduct */
     SELPRODUCT_UPDATE: "SELPRODUCT_UPDATE",
 
