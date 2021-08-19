@@ -15,13 +15,23 @@ const Card = (state = initState, action) => {
 
         case "CARD_ADD_PRODUCT":
 
-            if(state.indexOf(action.payload) !== -1){
-                return state
-            } else{
-                // return [...state, action.payload]
+            const tabCardVerif = state.filter(itmCard => itmCard.idProduct == action.payload.idProduct);
+
+            if(tabCardVerif.length > 0){
+
+                let elem = state.filter(prd => prd.idProduct == action.payload.idProduct)[0]
+                let qty =  elem.quantity + action.payload.quantity;
+                if (qty > 10){
+                    qty = 10
+                }
+                fireCard.doc(elem.id).update({ quantity: qty })
+                
+            }else{
+
                 fireCard.add(action.payload)
-                return state
             }
+
+            return state
             
         case "CARD_REMOVE_PRODUCT":
 
