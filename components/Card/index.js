@@ -115,7 +115,14 @@ const Card = ({navigation}) => {
         if (Cards.length > 0){
 
             let somme = 0
-            Cards.forEach(element => somme += (element.price * element.quantity) );
+            Cards.forEach(element => {
+
+                const itemCard = Products.filter(pr => pr.id == element.idProduct)[0]
+                console.log(itemCard)
+                return somme += (itemCard.price * element.quantity) 
+
+            });
+        
             setPriceTotal(somme)
         }
     }
