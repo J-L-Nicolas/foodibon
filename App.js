@@ -51,6 +51,17 @@ const App = () => {
       dispatch(Action(type.PRODUCTS_UPDATE_LIST,tempData))
     });
 
+    /* add categories firstore in redux */
+    Firebase.readListCategories().onSnapshot(catSnapshot => {
+
+      let tempData = []
+      catSnapshot.forEach(cat => {
+
+        tempData = [...tempData, {...cat.data(), id: cat.id}]
+      });
+      dispatch(Action(type.CATEGORIES_UPDATE_LIST,tempData))
+    });
+
     return unsubscribe;
   }, []);
 
@@ -62,6 +73,36 @@ const App = () => {
       dispatch(Action(type.USER_CHANGE, user))
     }
   }
+
+  useEffect(() => {
+
+    let dataCard = null
+
+    if (User != null) {
+
+      /* add list Card firstore in redux */
+      dataCard = Firebase.readListCard().where('user', '==', User.uid ).onSnapshot(cardSnapshot => {
+
+        let tempData = []
+        cardSnapshot.forEach(card => { 
+
+          tempData = [...tempData, {...card.data(), id: card.id}]
+        });
+        dispatch(Action(type.CARD_UPDATE_ALL,tempData))
+      });
+
+      /* add user infos firstore in redux */
+      publicUser = Firebase.queryUser().doc(User.uid).onSnapshot(pUserSnapshot => {
+
+        dispatch(Action(type.PUBLICUSER_UPDATE,pUserSnapshot.data()))
+      });
+
+    }
+
+    return () => {
+      dataCard
+    }
+  }, [User])
 
   const Stack = createStackNavigator();
 

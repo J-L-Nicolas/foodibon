@@ -18,8 +18,16 @@ const initState = {
 
     /* firestore */
     firestore: () => firestore(),
+                /* --------------------------querry message */
     addMessage: (msg,token) => firestore().collection('message').add({msg: msg, token}),
-    readListProducts: () => firestore().collection('products')
+                    /* --------------------------querry product */
+    readListProducts: () => firestore().collection('products'),
+                    /* --------------------------querry categories */
+    readListCategories: () => firestore().collection('categories'),
+                    /* --------------------------querry cardList */
+    readListCard: () => firestore().collection('card'),
+                    /* --------------------------querry user */
+    queryUser: () => firestore().collection('user'),
 
 }
 

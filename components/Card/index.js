@@ -16,6 +16,8 @@ const Card = ({navigation}) => {
     
     /* init redux */
     const Cards = useSelector(state => state.Card)
+    const Products = useSelector(state => state.Products)
+    const authUser = useSelector(state => state.User)
     const dispatch = useDispatch()
 
     /* State */
@@ -42,35 +44,39 @@ const Card = ({navigation}) => {
 
         dispatch(Action(type.CARD_DECREMENT_QUANTITY_PRODUCT,id))
     }
-    
 
     /* function  */
-    const renderItem = ({ item }) => (
-        <View style={styles.bodyItemsContainer}>
-            <Image
-                style={styles.ImageItem}
-                source={{uri: item.url}}
-            />
-            <View style={styles.ender0}>
-                <View style={styles.ender1}>
-                    <View>
-                        <Text>{item.name}</Text>
-                        <Text>{item.price}€</Text>
+    const renderItem = ({ item }) => { 
+
+        const itemProduct = Products.filter(ele => item.idProduct == ele.id)[0]
+
+        return (
+            <View style={styles.bodyItemsContainer}>
+                <Image
+                    style={styles.ImageItem}
+                    source={{uri: itemProduct.url}}
+                />
+                <View style={styles.ender0}>
+                    <View style={styles.ender1}>
+                        <View>
+                            <Text>{itemProduct.name}</Text>
+                            <Text>{itemProduct.price}€</Text>
+                        </View>
+                        <Icon name="trash" size={25} color="#900" onPress={()=>deleteItem(item.id)}/>
                     </View>
-                    <Icon name="trash" size={25} color="#900" onPress={()=>deleteItem(item.id)}/>
-                </View>
-                <View  style={styles.ender2}>
-                    <Icon name="plus" size={25} color={colors.textLink} onPress={()=>{increProductQt(item.id)}}/>
-                    <Text style={styles.TextCount}>{item.quantity}</Text>
-                    <Icon name="minus" size={25} color={colors.textLink}  onPress={()=>{decreProductQt(item.id)}}/>
+                    <View  style={styles.ender2}>
+                        <Icon name="plus" size={25} color={colors.textLink} onPress={()=>{increProductQt(item.idProduct)}}/>
+                        <Text style={styles.TextCount}>{item.quantity}</Text>
+                        <Icon name="minus" size={25} color={colors.textLink}  onPress={()=>{decreProductQt(item.idProduct)}}/>
+                    </View>
                 </View>
             </View>
-        </View>
-    );
+        )
+    };
 
     /* function clean card */
     const cleanCard = () => {
-        dispatch(Action(type.CARD_ALL_REMOVE_PRODUCTS,true))
+        dispatch(Action(type.CARD_ALL_REMOVE_PRODUCTS,authUser.uid))
     }
     
     /* display button clean */
@@ -88,11 +94,11 @@ const Card = ({navigation}) => {
             <Text style={styles.textPay}>Payments Method</Text>
 
             <View style={styles.bodyPay}>
-                <Icon name="cc-paypal" size={25} color="#000" onPress={()=>deleteItem(item.id)}/>
+                <Icon name="cc-paypal" size={25} color="#000" />
                 <Text>Paypal</Text>
             </View>
             <View style={styles.bodyPay}>
-                <Icon name="cc-stripe" size={25} color="#000" onPress={()=>deleteItem(item.id)}/>
+                <Icon name="cc-stripe" size={25} color="#000" />
                 <Text>Strip</Text>
             </View>
         </Fragment>
@@ -123,7 +129,7 @@ const Card = ({navigation}) => {
                 <FlatList
                     data={Cards}
                     renderItem={renderItem}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.idProduct}
                     ListFooterComponent={btnClean}
                 />
               

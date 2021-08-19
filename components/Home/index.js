@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect} from 'react'
-import { View, Text, FlatList, Pressable, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, Pressable, TouchableOpacity,  ActivityIndicator} from 'react-native'
 import styles from './styles'
 
 /* import redux */
@@ -19,6 +19,7 @@ const index = ({navigation}) => {
     const Categories = useSelector(state => state.Categories)
     const Products = useSelector(state => state.Products)
     const Filter = useSelector(state => state.Filter)
+    const PublicUser = useSelector(state => state.PublicUser)
     const dispatch = useDispatch()
 
     /* function add filter */
@@ -48,7 +49,7 @@ const index = ({navigation}) => {
     )
 
     /* displayer filter */
-    const displayFilterCat = (Filter != null) ? (
+    const displayFilterCat = ( Filter != null) ? (
 
         <TouchableOpacity style={styles.bodyCat} onPress={delFilter}>
             <Cat name={Filter.name} img={Filter.url} />
@@ -84,7 +85,7 @@ const index = ({navigation}) => {
     const headerHome = () => (
         <Fragment>
            <View style={styles.bodyTiltes}>
-                <Text style={styles.title}>Bonjour Jérémy</Text>
+                <Text style={styles.title}>Bonjour {(PublicUser)&&PublicUser.name}</Text>
                 <Text style={styles.subTitle}>Une petite Faim?</Text>
             </View>
 
@@ -102,6 +103,18 @@ const index = ({navigation}) => {
         </Fragment>
     
     )
+
+    const loadViewAll = (Categories.length > 0 && Products.length > 0 )?(
+        <FlatList
+            ListHeaderComponent={headerHome}
+            data={myProducts}
+            renderItem={renderItemProduct}
+            keyExtractor={item => item.id}
+            numColumns={2}
+        />
+    ):(
+        <ActivityIndicator size="large" />
+    )
         
     return (
         <View style={styles.body}>
@@ -109,13 +122,7 @@ const index = ({navigation}) => {
         <Header navigation={navigation} backEvent={false} backAction={true}/>
 
             <View style={styles.bodyFlatlistProduct}>
-                <FlatList
-                    ListHeaderComponent={headerHome}
-                    data={myProducts}
-                    renderItem={renderItemProduct}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                />
+                {loadViewAll}
             </View>
             
         </View>

@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF",
         marginTop: 30,
     },
+    imageUser:{
+        width: 300,
+        height: 300,
+        borderRadius: 150,
+    },
     btn:{
         marginTop: 60,
         height:40,

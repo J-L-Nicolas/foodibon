@@ -9,6 +9,7 @@ import User from './Reducer/User'
 import SelProduct from './Reducer/SelProduct'
 import Card from './Reducer/Card'
 import Filter from './Reducer/Filter'
+import PublicUser from './Reducer/PublicUser'
 
 const store = combineReducers({
 
@@ -20,6 +21,7 @@ const store = combineReducers({
     SelProduct,
     Card,
     Filter,
+    PublicUser,
 })
 
 export default createStore(store);
