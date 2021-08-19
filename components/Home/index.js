@@ -24,11 +24,13 @@ const index = ({navigation}) => {
 
     /* function add filter */
     const addFilter = (elements) => {
+        
         dispatch(Action(type.FILTER_UPDATE, elements))
     }
 
     /* function delete filter */
     const delFilter = () => {
+
         dispatch(Action(type.FILTER_CLEAN, true))
     }
 
@@ -101,7 +103,6 @@ const index = ({navigation}) => {
             </View> 
 
         </Fragment>
-    
     )
 
     const loadViewAll = (Categories.length > 0 && Products.length > 0 )?(
@@ -126,7 +127,6 @@ const index = ({navigation}) => {
             </View>
             
         </View>
-
     )
 }
 
