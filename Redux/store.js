@@ -11,6 +11,7 @@ import Card from './Reducer/Card'
 import Filter from './Reducer/Filter'
 import PublicUser from './Reducer/PublicUser'
 
+/* store redux */
 const store = combineReducers({
 
     Firebase,

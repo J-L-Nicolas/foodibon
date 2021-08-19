@@ -1,3 +1,4 @@
+/* Action function in reducer */
 const Action = (type, value) => ({
     
     type,
@@ -7,7 +8,7 @@ const Action = (type, value) => ({
 export default Action
 
 
-/*  --- liste type action --- */
+/*  --- list type actions --- */
 const type = {
 
     /* action Players */
