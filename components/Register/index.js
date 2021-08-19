@@ -42,6 +42,7 @@ const index = ({navigation}) => {
                 )
 
             }).catch(error => {
+                
                 setWaintView(false)
                 console.log(error)
             })
