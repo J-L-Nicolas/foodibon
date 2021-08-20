@@ -25,7 +25,6 @@ const Card = (state = initState, action) => {
                     qty = 10
                 }
                 fireCard.doc(elem.id).update({ quantity: qty })
-                
             }else{
 
                 fireCard.add(action.payload)
@@ -61,6 +60,7 @@ const Card = (state = initState, action) => {
             return state
 
         case "CARD_DECREMENT_QUANTITY_PRODUCT":
+
             const newState =  state.map(value => {
 
                 if (value.idProduct == action.payload){
@@ -83,7 +83,6 @@ const Card = (state = initState, action) => {
         case "CARD_ALL_REMOVE_PRODUCTS":
 
             let batch = firestore().batch();
-
             const jobskill_ref = fireCard.where('user', '==', action.payload);
 
             jobskill_ref
@@ -94,10 +93,10 @@ const Card = (state = initState, action) => {
                 });
                 return batch.commit();
             })
-
             return state
 
         default:
+            
             return state
     }
 }

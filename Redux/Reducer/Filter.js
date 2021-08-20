@@ -13,6 +13,7 @@ const Filter = (state = initState, action) => {
             return initState
 
         default:
+            
             return state
     }
 }

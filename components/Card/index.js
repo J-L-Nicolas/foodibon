@@ -2,7 +2,6 @@ import React, {Fragment, useState, useEffect} from 'react'
 import { View, Text, FlatList, Button, Image} from 'react-native'
 import styles from './styles'
 import colors from '../../assets/colors'
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 /* import redux */
@@ -31,6 +30,7 @@ const Card = ({navigation}) => {
 
     /* function clean item to card */
     const deleteItem = (id) => {
+
         dispatch(Action(type.CARD_REMOVE_PRODUCT, id))
     }
 
@@ -40,12 +40,19 @@ const Card = ({navigation}) => {
         dispatch(Action(type.CARD_INCREMENT_QUANTITY_PRODUCT,id))
     }
 
+    /* function decremental */
     const decreProductQt = (id) => {
 
         dispatch(Action(type.CARD_DECREMENT_QUANTITY_PRODUCT,id))
     }
 
-    /* function  */
+    /* function go home layout if card clean */
+    const goToHome = () => {
+        
+        navigation.navigate("home")
+    }
+    
+    /* display products card */
     const renderItem = ({ item }) => { 
 
         const itemProduct = Products.filter(ele => item.idProduct == ele.id)[0]
@@ -76,6 +83,7 @@ const Card = ({navigation}) => {
 
     /* function clean card */
     const cleanCard = () => {
+
         dispatch(Action(type.CARD_ALL_REMOVE_PRODUCTS,authUser.uid))
     }
     
@@ -102,10 +110,14 @@ const Card = ({navigation}) => {
                 <Text>Strip</Text>
             </View>
         </Fragment>
-
     ):(
+        
         <Fragment>
-            <Text style={styles.msgClearCard}>Votre Panier est vide 😥</Text>
+            <Text style={styles.msgClearCard}>Votre Panier est tristement vide 😥</Text>
+            <Button
+                title="Voir nos Produits"
+                onPress={goToHome}
+            />
         </Fragment>
     )
 
@@ -115,7 +127,13 @@ const Card = ({navigation}) => {
         if (Cards.length > 0){
 
             let somme = 0
-            Cards.forEach(element => somme += (element.price * element.quantity) );
+            Cards.forEach(element => {
+
+                const itemCard = Products.filter(pr => pr.id == element.idProduct)[0]
+                console.log(itemCard)
+                return somme += (itemCard.price * element.quantity) 
+
+            });
             setPriceTotal(somme)
         }
     }
@@ -132,9 +150,7 @@ const Card = ({navigation}) => {
                     keyExtractor={item => item.idProduct}
                     ListFooterComponent={btnClean}
                 />
-              
             </View>
-
         </View>
     )
 }

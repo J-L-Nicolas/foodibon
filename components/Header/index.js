@@ -42,12 +42,12 @@ const index = ({navigation, backAction}) => {
         navigation.navigate("card")
     }
 
+    /* navigation notification layout */
     const gotoNotif = () => {
         setmodalEtat(false)
         navigation.navigate("notif")
     }
     
-
     /* displayCard */
     const viewBack = backAction ? (<View></View>): (<Icon name="arrow-left" size={30} color={colors.textLink} onPress={GoBack}/>)
     

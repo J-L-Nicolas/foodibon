@@ -3,7 +3,6 @@ import { View, Text, Pressable, Image } from 'react-native'
 import styles from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 /* import components  */
 import Header from '../Header'
 
@@ -12,10 +11,11 @@ import { useSelector } from 'react-redux';
 
 const Account = ({navigation}) => {
 
-    const myIcon = <Icon name="chevron-right" size={25} color="#000000" />;
-
     /* init redux const */
     const PublicUser = useSelector(state => state.PublicUser)
+
+    /* display icon */
+    const myIcon = <Icon name="chevron-right" size={25} color="#000000" />;
 
     return (
         <View style={styles.body}>

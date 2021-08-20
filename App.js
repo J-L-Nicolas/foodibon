@@ -22,23 +22,38 @@ import Notif from './components/notif'
 
 const App = () => {
 
-  /* init redux */
+  /* init redux const */
   const Firebase = useSelector(state => state.Firebase)
   const User = useSelector(state => state.User)
   const dispatch = useDispatch()
 
-  /* Effect */
+  /* ############### useEffect ########### 
+  #########################################*/
   useEffect(() => {
-
-    Firebase.auth().onAuthStateChanged(onAuthStateChanged)
-  }, [])
-
-  useEffect(() => {
-
+    
     /* cloud messaging init service */
     const unsubscribe = Firebase.messaging().onMessage(async remoteMessage => {
       Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
+    return unsubscribe
+  }, [])
+
+  useEffect(() => {
+
+    /* auth firebase retrieve user information  */
+    Firebase.auth().onAuthStateChanged(onAuthStateChanged)
+  }, [])
+
+  // Handle user state changes
+  const onAuthStateChanged = (user) => {
+    
+    if (user != null){
+
+      dispatch(Action(type.USER_CHANGE, user))
+    }
+  }
+
+  useEffect(() => {
 
     /* add products firstore in redux */
     Firebase.readListProducts().onSnapshot(productSnapshot => {
@@ -61,18 +76,7 @@ const App = () => {
       });
       dispatch(Action(type.CATEGORIES_UPDATE_LIST,tempData))
     });
-
-    return unsubscribe;
   }, []);
-
-  // Handle user state changes
-  const onAuthStateChanged = (user) => {
-    
-    if (user != null){
-
-      dispatch(Action(type.USER_CHANGE, user))
-    }
-  }
 
   useEffect(() => {
 
@@ -100,10 +104,12 @@ const App = () => {
     }
 
     return () => {
+
       dataCard
     }
   }, [User])
 
+  /* init const for navigation */
   const Stack = createStackNavigator();
 
   /* display components Navigate  */

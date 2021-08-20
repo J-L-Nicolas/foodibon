@@ -10,6 +10,7 @@ import Action, {type} from '../../Redux/Action'
 /* import components  */
 import Header from '../Header'
 
+/* import icon */
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const index = ({navigation}) => {
@@ -27,10 +28,13 @@ const index = ({navigation}) => {
     const handleChangeItems = (type) => {
         
         if (type){
+
             if (numberItems < 10){
+                
                 setNumberItems(numberItems + 1)
             }
         }else{
+
             if(numberItems > 1){
 
                 setNumberItems(numberItems - 1)
@@ -40,6 +44,7 @@ const index = ({navigation}) => {
     
     /* function add cart product */
     const addCard = () => {
+
         dispatch(Action(type.CARD_ADD_PRODUCT,{idProduct: SelProduct.id, quantity: numberItems, user: authUser.uid}))
         setModalVisible(true)
     }
