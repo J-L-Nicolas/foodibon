@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, Text, Image , TouchableOpacity} from 'react-native'
+import { View, Text, Image , TouchableOpacity, Modal} from 'react-native'
 import styles from './styles'
 import colors from '../../assets/colors'
 
@@ -21,6 +21,7 @@ const index = ({navigation}) => {
 
     /* State */
     const [numberItems, setNumberItems] = useState(1)
+    const [modalVisible, setModalVisible] = useState(false);
 
     /* function change number */
     const handleChangeItems = (type) => {
@@ -40,7 +41,15 @@ const index = ({navigation}) => {
     /* function add cart product */
     const addCard = () => {
         dispatch(Action(type.CARD_ADD_PRODUCT,{idProduct: SelProduct.id, quantity: numberItems, user: authUser.uid}))
+        setModalVisible(true)
     }
+
+    /* function go to Card */
+    const gotoCard = () => {
+        navigation.navigate('card')
+        setModalVisible(false)
+    }
+    
     
     /* display icon */
     const add = <Icon name="plus" size={20} color={colors.textLink} />;
@@ -79,6 +88,26 @@ const index = ({navigation}) => {
                 <Text  style={styles.titleDetail}>Food Details</Text>
                 <Text>{SelProduct.description}</Text>
             </View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+            >
+                <View style={styles.modalBody}>
+                    <View style={styles.modalCard} >
+                        <Text>Félicitation votre article est dans votre panier</Text>
+                        <View style={styles.containerBtncard}>
+                            <TouchableOpacity style={styles.modalBodyBtnCLoss} onPress={() => setModalVisible(false)}>
+                                <Text style={styles.textbtnCard}>Continuer vos achats</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.modalBodyBtnGoCard} onPress={gotoCard}>
+                                <Text style={styles.textbtnCard} >Voir votre panier</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+
+            </Modal>
         </View>
     )
 }

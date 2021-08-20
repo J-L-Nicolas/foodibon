@@ -70,6 +70,42 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 20,
         marginBottom: 10
+    },
+    modalBody:{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#00000054",
+    },
+    modalCard:{
+        width: "80%",
+        height: 200,
+        backgroundColor: "#ffffff",
+        borderRadius: 20,
+        padding: 20,
+        justifyContent: "space-between",
+        
+
+    },
+    containerBtncard:{
+        flexDirection: "row",
+        justifyContent:"space-between",
+    },
+    modalBodyBtnCLoss:{
+        backgroundColor: "#2453ff",
+        height: 30,
+        padding: 4,
+        borderRadius: 4,
+    },
+    modalBodyBtnGoCard:{
+        backgroundColor: "#c27100",
+        height: 30,
+        borderRadius: 4,
+        padding: 4,
+    },
+    textbtnCard:{
+        color: "#FFFFFF",
+        fontWeight: "bold"
     }
     
 })
