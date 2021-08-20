@@ -130,7 +130,6 @@ const Card = ({navigation}) => {
             Cards.forEach(element => {
 
                 const itemCard = Products.filter(pr => pr.id == element.idProduct)[0]
-                console.log(itemCard)
                 return somme += (itemCard.price * element.quantity) 
 
             });
