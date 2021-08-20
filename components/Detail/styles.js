@@ -84,8 +84,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 20,
         justifyContent: "space-between",
-        
-
     },
     containerBtncard:{
         flexDirection: "row",
